@@ -10,7 +10,7 @@ class UserModel {
   final String uid;
   final bool isAuthenticated; //check for guest
   final int karma;
-  final List<String> awards;
+  final List<dynamic> awards;
   UserModel({
     required this.name,
     required this.profilePic,
@@ -28,7 +28,7 @@ class UserModel {
     String? uid,
     bool? isAuthenticated,
     int? karma,
-    List<String>? awards,
+    List<dynamic>? awards,
   }) {
     return UserModel(
       name: name ?? this.name,
@@ -61,7 +61,7 @@ class UserModel {
       uid: map['uid'] as String,
       isAuthenticated: map['isAuthenticated'] as bool,
       karma: map['karma'] as int,
-      awards: List<String>.from((map['awards'] as List<String>)),
+      awards: List<dynamic>.from((map['awards'] as List<dynamic>)),
     );
   }
 
