@@ -16,6 +16,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(
     ProviderScope(
       child: const MyApp(),
@@ -49,6 +50,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         .watch(authStateChangeProvider)
         .when(
           data: (data) => MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: Pallete.darkModeAppTheme,
             routerDelegate: RoutemasterDelegate(
@@ -73,3 +75,6 @@ class _MyAppState extends ConsumerState<MyApp> {
         );
   }
 }
+
+
+//Comtinue from = 3:08:44
