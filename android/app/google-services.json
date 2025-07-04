@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "589370519862",
-    "project_id": "reddit-clone-5fa87",
-    "storage_bucket": "reddit-clone-5fa87.firebasestorage.app"
+    "project_number": "592572950572",
+    "project_id": "reddit-flutter-a1005",
+    "storage_bucket": "reddit-flutter-a1005.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:589370519862:android:a394ab44517ff520d98397",
+        "mobilesdk_app_id": "1:592572950572:android:ff3d94a485293091dcc989",
         "android_client_info": {
-          "package_name": "com.example.reddit_clone"
+          "package_name": "com.example.reddit_flutter"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAvGpV-QpGLqqbTjHJiZc9KHOTNLqd2Xcw"
+          "current_key": "AIzaSyBNjd9uUJdtig8IVqX8toDnR6C7kupELhs"
         }
       ],
       "services": {

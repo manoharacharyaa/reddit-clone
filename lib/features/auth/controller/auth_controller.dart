@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:reddit_clone/core/utils.dart';
-import 'package:reddit_clone/features/auth/repository/auth_repository.dart';
-import 'package:reddit_clone/models/user_model.dart';
+import 'package:reddit_flutter/core/utils.dart';
+import 'package:reddit_flutter/features/auth/repository/auth_repository.dart';
+import 'package:reddit_flutter/models/user_model.dart';
 
 final userProvider = StateProvider<UserModel?>((ref) => null);
 
@@ -28,12 +28,10 @@ class AuthController extends StateNotifier<bool> {
   final AuthRepository _authRepository;
   final Ref _ref;
 
-  AuthController({
-    required AuthRepository authRepository,
-    required Ref ref,
-  }) : _authRepository = authRepository,
-       _ref = ref,
-       super(false);
+  AuthController({required AuthRepository authRepository, required Ref ref})
+    : _authRepository = authRepository,
+      _ref = ref,
+      super(false);
 
   Stream<User?> get authStateChange => _authRepository.authStateChange;
 

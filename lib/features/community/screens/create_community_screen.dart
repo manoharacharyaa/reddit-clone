@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:reddit_clone/core/common/loader.dart';
-import 'package:reddit_clone/features/community/controller/community_controller.dart';
+import 'package:reddit_flutter/core/common/loader.dart';
+import 'package:reddit_flutter/features/community/controller/community_controller.dart';
 
 class CreateCommunityScreen extends ConsumerStatefulWidget {
   const CreateCommunityScreen({super.key});
@@ -76,10 +76,7 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
                     ),
                     child: Text(
                       'Create community',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                      ),
+                      style: TextStyle(color: Colors.white, fontSize: 17),
                     ),
                   ),
                 ],

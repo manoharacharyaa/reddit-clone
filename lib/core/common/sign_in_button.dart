@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:reddit_clone/core/constants/constants.dart';
-import 'package:reddit_clone/features/auth/controller/auth_controller.dart';
-import 'package:reddit_clone/theme/pallet.dart';
+import 'package:reddit_flutter/core/constants/constants.dart';
+import 'package:reddit_flutter/features/auth/controller/auth_controller.dart';
+import 'package:reddit_flutter/theme/pallet.dart';
 
 class SignInButton extends ConsumerWidget {
   const SignInButton({super.key});
@@ -21,10 +21,7 @@ class SignInButton extends ConsumerWidget {
           'Continue with Google',
           style: TextStyle(color: Colors.white),
         ),
-        icon: Image.asset(
-          Constants.googlePath,
-          width: 35,
-        ),
+        icon: Image.asset(Constants.googlePath, width: 35),
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(Pallete.greyColor),
           minimumSize: WidgetStatePropertyAll(Size(double.infinity, 50)),

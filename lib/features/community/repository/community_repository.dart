@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:reddit_clone/core/constants/firebase_constants.dart';
-import 'package:reddit_clone/core/failure.dart';
-import 'package:reddit_clone/core/providers/firebase_provider.dart';
-import 'package:reddit_clone/core/type_defs.dart';
-import 'package:reddit_clone/models/community_model.dart';
+import 'package:reddit_flutter/core/constants/firebase_constants.dart';
+import 'package:reddit_flutter/core/failure.dart';
+import 'package:reddit_flutter/core/providers/firebase_provider.dart';
+import 'package:reddit_flutter/core/type_defs.dart';
+import 'package:reddit_flutter/models/community_model.dart';
 
 final communityRepositoryProvider = Provider((ref) {
   return CommunityRepository(firestore: ref.watch(firestoreProvider));
@@ -14,9 +14,8 @@ final communityRepositoryProvider = Provider((ref) {
 class CommunityRepository {
   final FirebaseFirestore _firestore;
 
-  CommunityRepository({
-    required FirebaseFirestore firestore,
-  }) : _firestore = firestore;
+  CommunityRepository({required FirebaseFirestore firestore})
+    : _firestore = firestore;
 
   FutureVoid createCommunity(Community community) async {
     try {
@@ -24,9 +23,7 @@ class CommunityRepository {
       if (communityDoc.exists) {
         throw 'Community with the same name already exist';
       }
-      return right(
-        _communities.doc(community.name).set(community.toMap()),
-      );
+      return right(_communities.doc(community.name).set(community.toMap()));
     } on FirebaseException catch (e) {
       return left(Failure(e.message!));
     } catch (e) {
@@ -53,6 +50,16 @@ class CommunityRepository {
         .map(
           (event) => Community.fromMap(event.data() as Map<String, dynamic>),
         );
+  }
+
+  FutureVoid editCommunity(Community community) async {
+    try {
+      return right(_communities.doc(community.name).update(community.toMap()));
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
   }
 
   CollectionReference get _communities =>
