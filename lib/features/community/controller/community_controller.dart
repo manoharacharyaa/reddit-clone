@@ -80,6 +80,7 @@ class CommunityController extends StateNotifier<bool> {
     required BuildContext context,
     required Community community,
   }) async {
+    state = true;
     if (profileFile != null) {
       //communities/profile/manohar
       final res = await _storageRepository.storeFile(
@@ -102,12 +103,13 @@ class CommunityController extends StateNotifier<bool> {
       );
       res.fold(
         (l) => showSnacBar(context, l.message),
-        (r) => community.copyWith(banner: r),
+        (r) => community = community.copyWith(banner: r),
       );
     }
 
     //when nothing is edited
     final res = await _communityRepository.editCommunity(community);
+    state = false;
     res.fold(
       (l) => showSnacBar(context, l.message),
       (r) => Routemaster.of(context).pop(),
