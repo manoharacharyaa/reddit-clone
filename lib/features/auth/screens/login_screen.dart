@@ -19,10 +19,7 @@ class LoginScreen extends ConsumerWidget {
         actions: [
           TextButton(
             onPressed: () {},
-            child: const Text(
-              'Skip',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+            child: const Text('Skip', style: TextStyle(fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -31,15 +28,9 @@ class LoginScreen extends ConsumerWidget {
           : Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'Dive into anything',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
+                Text('Dive into anything', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 30),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(Constants.loginEmotePath, height: 400),
-                ),
+                Padding(padding: const EdgeInsets.all(8.0), child: Image.asset(Constants.loginEmotePath, height: 400)),
                 const SizedBox(height: 20),
                 const SignInButton(),
               ],

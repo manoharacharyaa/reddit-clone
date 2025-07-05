@@ -29,10 +29,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   UserModel? userModel;
 
   void getData(WidgetRef ref, User data) async {
-    userModel = await ref
-        .watch(authControllerProvider.notifier)
-        .getUserData(data.uid)
-        .first; //first is used to convert a stream to a future
+    userModel = await ref.watch(authControllerProvider.notifier).getUserData(data.uid).first; //first is used to convert a stream to a future
 
     ref.read(userProvider.notifier).update((state) => userModel);
     setState(() {});
@@ -67,6 +64,5 @@ class _MyAppState extends ConsumerState<MyApp> {
         );
   }
 }
-
 
 //Comtinue from = 3:08:44

@@ -24,11 +24,7 @@ class CommunityListDrawer extends ConsumerWidget {
       child: SafeArea(
         child: Column(
           children: [
-            ListTile(
-              title: const Text('Create a community'),
-              leading: const Icon(Icons.add),
-              onTap: () => navigateToCreateCommunity(context),
-            ),
+            ListTile(title: const Text('Create a community'), leading: const Icon(Icons.add), onTap: () => navigateToCreateCommunity(context)),
             ref
                 .watch(userCommunitiesProvider)
                 .when(
@@ -39,9 +35,7 @@ class CommunityListDrawer extends ConsumerWidget {
                         itemBuilder: (context, index) {
                           final community = communities[index];
                           return ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(community.avatar),
-                            ),
+                            leading: CircleAvatar(backgroundImage: NetworkImage(community.avatar)),
                             title: Text('r/${community.name}'),
                             onTap: () {
                               navigateToCommunity(context, community);

@@ -7,8 +7,7 @@ class CreateCommunityScreen extends ConsumerStatefulWidget {
   const CreateCommunityScreen({super.key});
 
   @override
-  ConsumerState<CreateCommunityScreen> createState() =>
-      _CreateCommunityScreenState();
+  ConsumerState<CreateCommunityScreen> createState() => _CreateCommunityScreenState();
 }
 
 class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
@@ -21,9 +20,7 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
   }
 
   void createCommunity() {
-    ref
-        .read(communityControllerProvider.notifier)
-        .createCommunity(communityNameController.text.trim(), context);
+    ref.read(communityControllerProvider.notifier).createCommunity(communityNameController.text.trim(), context);
   }
 
   @override
@@ -32,52 +29,29 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
     return isLoading
         ? Loader()
         : Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              title: Text('Create a community'),
-            ),
+            appBar: AppBar(centerTitle: true, title: Text('Create a community')),
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text('Community name'),
-                  ),
+                  const Align(alignment: Alignment.topLeft, child: Text('Community name')),
                   const SizedBox(height: 10),
                   TextField(
                     controller: communityNameController,
                     cursorColor: Colors.blueAccent,
 
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.grey[900],
-                      border: InputBorder.none,
-                      hintText: 'r/Community_name',
-                      contentPadding: EdgeInsets.all(18),
-                    ),
+                    decoration: InputDecoration(filled: true, fillColor: Colors.grey[900], border: InputBorder.none, hintText: 'r/Community_name', contentPadding: EdgeInsets.all(18)),
                     maxLength: 21,
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
                     onPressed: createCommunity,
                     style: ButtonStyle(
-                      minimumSize: WidgetStatePropertyAll(
-                        Size(double.infinity, 50),
-                      ),
-                      backgroundColor: WidgetStatePropertyAll(
-                        Colors.blueAccent,
-                      ),
-                      shape: WidgetStatePropertyAll(
-                        RoundedSuperellipseBorder(
-                          borderRadius: BorderRadiusGeometry.circular(20),
-                        ),
-                      ),
+                      minimumSize: WidgetStatePropertyAll(Size(double.infinity, 50)),
+                      backgroundColor: WidgetStatePropertyAll(Colors.blueAccent),
+                      shape: WidgetStatePropertyAll(RoundedSuperellipseBorder(borderRadius: BorderRadiusGeometry.circular(20))),
                     ),
-                    child: Text(
-                      'Create community',
-                      style: TextStyle(color: Colors.white, fontSize: 17),
-                    ),
+                    child: Text('Create community', style: TextStyle(color: Colors.white, fontSize: 17)),
                   ),
                 ],
               ),

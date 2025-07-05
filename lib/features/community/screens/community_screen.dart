@@ -30,14 +30,7 @@ class CommunityScreen extends ConsumerWidget {
                     floating: true,
                     snap: true,
                     flexibleSpace: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: Image.network(
-                            community.banner,
-                            fit: BoxFit.fitWidth,
-                          ),
-                        ),
-                      ],
+                      children: [Positioned.fill(child: Image.network(community.banner, fit: BoxFit.fitWidth))],
                     ),
                   ),
                   SliverPadding(
@@ -46,21 +39,12 @@ class CommunityScreen extends ConsumerWidget {
                       delegate: SliverChildListDelegate([
                         Align(
                           alignment: Alignment.topLeft,
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(community.avatar),
-                            radius: 35,
-                          ),
+                          child: CircleAvatar(backgroundImage: NetworkImage(community.avatar), radius: 35),
                         ),
                         const SizedBox(height: 5),
                         Row(
                           children: [
-                            Text(
-                              'r/${community.name}',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            Text('r/${community.name}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                             const Spacer(),
                             community.mods.contains(user.uid)
                                 ? OutlinedButton(
@@ -68,61 +52,24 @@ class CommunityScreen extends ConsumerWidget {
                                       navigateToModTools(context);
                                     },
                                     style: ButtonStyle(
-                                      side: WidgetStatePropertyAll(
-                                        BorderSide(color: Colors.blueAccent),
-                                      ),
-                                      shape: WidgetStatePropertyAll(
-                                        RoundedSuperellipseBorder(
-                                          borderRadius:
-                                              BorderRadiusGeometry.circular(20),
-                                        ),
-                                      ),
-                                      padding: WidgetStatePropertyAll(
-                                        const EdgeInsets.symmetric(
-                                          horizontal: 25,
-                                        ),
-                                      ),
+                                      side: WidgetStatePropertyAll(BorderSide(color: Colors.blueAccent)),
+                                      shape: WidgetStatePropertyAll(RoundedSuperellipseBorder(borderRadius: BorderRadiusGeometry.circular(20))),
+                                      padding: WidgetStatePropertyAll(const EdgeInsets.symmetric(horizontal: 25)),
                                     ),
-                                    child: Text(
-                                      'Mod Tools',
-                                      style: TextStyle(
-                                        color: Colors.blueAccent,
-                                      ),
-                                    ),
+                                    child: Text('Mod Tools', style: TextStyle(color: Colors.blueAccent)),
                                   )
                                 : OutlinedButton(
                                     onPressed: () {},
                                     style: ButtonStyle(
-                                      side: WidgetStatePropertyAll(
-                                        BorderSide(color: Colors.blueAccent),
-                                      ),
-                                      shape: WidgetStatePropertyAll(
-                                        RoundedSuperellipseBorder(
-                                          borderRadius:
-                                              BorderRadiusGeometry.circular(20),
-                                        ),
-                                      ),
-                                      padding: WidgetStatePropertyAll(
-                                        const EdgeInsets.symmetric(
-                                          horizontal: 25,
-                                        ),
-                                      ),
+                                      side: WidgetStatePropertyAll(BorderSide(color: Colors.blueAccent)),
+                                      shape: WidgetStatePropertyAll(RoundedSuperellipseBorder(borderRadius: BorderRadiusGeometry.circular(20))),
+                                      padding: WidgetStatePropertyAll(const EdgeInsets.symmetric(horizontal: 25)),
                                     ),
-                                    child: Text(
-                                      community.members.contains(user.uid)
-                                          ? 'Joined'
-                                          : 'Join',
-                                      style: TextStyle(
-                                        color: Colors.blueAccent,
-                                      ),
-                                    ),
+                                    child: Text(community.members.contains(user.uid) ? 'Joined' : 'Join', style: TextStyle(color: Colors.blueAccent)),
                                   ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text('${community.members.length} members'),
-                        ),
+                        Padding(padding: const EdgeInsets.only(top: 10), child: Text('${community.members.length} members')),
                       ]),
                     ),
                   ),

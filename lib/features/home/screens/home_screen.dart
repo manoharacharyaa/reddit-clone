@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_flutter/features/auth/controller/auth_controller.dart';
-import 'package:reddit_flutter/features/home/screens/community_list_drawer.dart';
+import 'package:reddit_flutter/features/home/delegates/search_community_delegate.dart';
+import 'package:reddit_flutter/features/home/drawers/community_list_drawer.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -27,10 +28,20 @@ class HomeScreen extends ConsumerWidget {
         ),
         title: Text('Home'),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchCommunityDelegate(ref),
+              );
+            },
+            icon: Icon(Icons.search),
+          ),
           IconButton(
             onPressed: () {},
-            icon: CircleAvatar(backgroundImage: NetworkImage(user.profilePic)),
+            icon: CircleAvatar(
+              backgroundImage: NetworkImage(user.profilePic),
+            ),
           ),
         ],
       ),

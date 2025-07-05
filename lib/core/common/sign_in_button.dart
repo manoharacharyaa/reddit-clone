@@ -17,19 +17,12 @@ class SignInButton extends ConsumerWidget {
       padding: const EdgeInsets.all(18.0),
       child: ElevatedButton.icon(
         onPressed: () => signinWithGoogle(context, ref),
-        label: const Text(
-          'Continue with Google',
-          style: TextStyle(color: Colors.white),
-        ),
+        label: const Text('Continue with Google', style: TextStyle(color: Colors.white)),
         icon: Image.asset(Constants.googlePath, width: 35),
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(Pallete.greyColor),
           minimumSize: WidgetStatePropertyAll(Size(double.infinity, 50)),
-          shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadiusGeometry.circular(20),
-            ),
-          ),
+          shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(20))),
         ),
       ),
     );

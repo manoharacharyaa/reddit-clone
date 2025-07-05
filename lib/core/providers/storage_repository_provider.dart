@@ -6,21 +6,14 @@ import 'package:reddit_flutter/core/failure.dart';
 import 'package:reddit_flutter/core/providers/firebase_provider.dart';
 import 'package:reddit_flutter/core/type_defs.dart';
 
-final storageRepositoryProvider = Provider(
-  (ref) => StorageRepository(firebaseStorage: ref.watch(storegeProvider)),
-);
+final storageRepositoryProvider = Provider((ref) => StorageRepository(firebaseStorage: ref.watch(storegeProvider)));
 
 class StorageRepository {
   final FirebaseStorage _firebaseStorage;
 
-  StorageRepository({required FirebaseStorage firebaseStorage})
-    : _firebaseStorage = firebaseStorage;
+  StorageRepository({required FirebaseStorage firebaseStorage}) : _firebaseStorage = firebaseStorage;
 
-  FutureEither<String> storeFile({
-    required String path,
-    required String id,
-    File? file,
-  }) async {
+  FutureEither<String> storeFile({required String path, required String id, File? file}) async {
     try {
       final ref = _firebaseStorage.ref().child(path).child(id);
 
