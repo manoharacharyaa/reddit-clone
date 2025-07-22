@@ -1,12 +1,22 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:reddit_flutter/core/constants/constants.dart';
 import 'package:reddit_flutter/features/auth/controller/auth_controller.dart';
 import 'package:reddit_flutter/features/home/delegates/search_community_delegate.dart';
 import 'package:reddit_flutter/features/home/drawers/community_list_drawer.dart';
 import 'package:reddit_flutter/features/home/drawers/profile_drawer.dart';
+import 'package:reddit_flutter/theme/pallet.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  int _page = 0;
 
   void displayDrawer(BuildContext context) {
     Scaffold.of(context).openDrawer();
@@ -16,9 +26,16 @@ class HomeScreen extends ConsumerWidget {
     Scaffold.of(context).openEndDrawer();
   }
 
+  void onPageChanges(int page) {
+    setState(() {
+      _page = page;
+    });
+  }
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final user = ref.watch(userProvider)!;
+    final currentTheme = ref.watch(themeNotifierProvider);
 
     return Scaffold(
       drawer: CommunityListDrawer(),
@@ -54,6 +71,23 @@ class HomeScreen extends ConsumerWidget {
             },
           ),
         ],
+      ),
+      body: Constants.tabWidget[_page],
+      bottomNavigationBar: CupertinoTabBar(
+        activeColor: currentTheme.iconTheme.color,
+        backgroundColor: Colors.black,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: '',
+          ),
+        ],
+        onTap: onPageChanges,
+        currentIndex: _page,
       ),
     );
   }

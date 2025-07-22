@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, ThemeData>((
@@ -18,33 +17,68 @@ class Pallete {
   static var redColor = Colors.red.shade500;
   static var blueColor = Colors.blue.shade300;
 
-  // Themes
   static var darkModeAppTheme = ThemeData.dark().copyWith(
-    colorScheme: ColorScheme.dark(primary: Colors.blueAccent),
+    colorScheme: ColorScheme.dark(primary: Colors.blue),
     scaffoldBackgroundColor: blackColor,
-    cardColor: blackColor,
-    appBarTheme: AppBarTheme(
-      titleTextStyle: GoogleFonts.poppins(color: Colors.white, fontSize: 20),
+    cardColor: greyColor,
+    appBarTheme: const AppBarTheme(
       backgroundColor: blackColor,
-      iconTheme: IconThemeData(color: whiteColor),
+      iconTheme: IconThemeData(
+        color: whiteColor,
+      ),
     ),
-    drawerTheme: const DrawerThemeData(backgroundColor: drawerColor),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: drawerColor,
+    ),
     primaryColor: redColor,
+    canvasColor: drawerColor,
   );
 
   static var lightModeAppTheme = ThemeData.light().copyWith(
-    colorScheme: ColorScheme.dark(primary: Colors.blueAccent),
+    colorScheme: ColorScheme.dark(primary: Colors.blue),
     scaffoldBackgroundColor: whiteColor,
     cardColor: greyColor,
-    appBarTheme: AppBarTheme(
-      titleTextStyle: GoogleFonts.poppins(color: Colors.black, fontSize: 20),
+    appBarTheme: const AppBarTheme(
       backgroundColor: whiteColor,
       elevation: 0,
-      iconTheme: IconThemeData(color: blackColor),
+      iconTheme: IconThemeData(
+        color: blackColor,
+      ),
     ),
-    drawerTheme: const DrawerThemeData(backgroundColor: whiteColor),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: whiteColor,
+    ),
     primaryColor: redColor,
+    canvasColor: whiteColor,
   );
+
+  // Themes
+  // static var darkModeAppTheme = ThemeData.dark().copyWith(
+  //   colorScheme: ColorScheme.dark(primary: Colors.blueAccent),
+  //   scaffoldBackgroundColor: blackColor,
+  //   cardColor: blackColor,
+  //   appBarTheme: AppBarTheme(
+  //     titleTextStyle: GoogleFonts.poppins(color: Colors.white, fontSize: 20),
+  //     backgroundColor: blackColor,
+  //     iconTheme: IconThemeData(color: whiteColor),
+  //   ),
+  //   drawerTheme: const DrawerThemeData(backgroundColor: drawerColor),
+  //   primaryColor: redColor,
+  // );
+
+  // static var lightModeAppTheme = ThemeData.light().copyWith(
+  //   colorScheme: ColorScheme.dark(primary: Colors.blueAccent),
+  //   scaffoldBackgroundColor: whiteColor,
+  //   cardColor: greyColor,
+  //   appBarTheme: AppBarTheme(
+  //     titleTextStyle: GoogleFonts.poppins(color: Colors.black, fontSize: 20),
+  //     backgroundColor: whiteColor,
+  //     elevation: 0,
+  //     iconTheme: IconThemeData(color: blackColor),
+  //   ),
+  //   drawerTheme: const DrawerThemeData(backgroundColor: whiteColor),
+  //   primaryColor: redColor,
+  // );
 }
 
 class ThemeNotifier extends StateNotifier<ThemeData> {
