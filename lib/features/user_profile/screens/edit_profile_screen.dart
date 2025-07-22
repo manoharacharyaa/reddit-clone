@@ -70,11 +70,12 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(userProfileControllerProvider);
+    final currentTheme = ref.watch(themeNotifierProvider);
     return ref
         .watch(getUserDataProvider(widget.uid))
         .when(
           data: (user) => Scaffold(
-            backgroundColor: Pallete.darkModeAppTheme.scaffoldBackgroundColor,
+            backgroundColor: currentTheme.scaffoldBackgroundColor,
             appBar: AppBar(
               title: const Text('Edit Profile'),
               actions: [
@@ -99,7 +100,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                 child: DottedBorder(
                                   options: RoundedRectDottedBorderOptions(
                                     radius: const Radius.circular(10),
-                                    color: Colors.white,
+                                    color: currentTheme.scaffoldBackgroundColor,
                                     dashPattern: const [10, 4],
                                   ),
                                   child: Container(
