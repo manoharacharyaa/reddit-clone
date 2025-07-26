@@ -67,5 +67,3 @@ class _MyAppState extends ConsumerState<MyApp> {
         );
   }
 }
-
-//Comtinue from = 3:08:44

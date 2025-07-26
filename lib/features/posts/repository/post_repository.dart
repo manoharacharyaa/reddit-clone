@@ -5,6 +5,7 @@ import 'package:reddit_flutter/core/constants/firebase_constants.dart';
 import 'package:reddit_flutter/core/failure.dart';
 import 'package:reddit_flutter/core/providers/firebase_provider.dart';
 import 'package:reddit_flutter/core/type_defs.dart';
+import 'package:reddit_flutter/models/community_model.dart';
 import 'package:reddit_flutter/models/post_model.dart';
 
 final postRepositoryProvider = Provider((ref) {
@@ -18,12 +19,44 @@ class PostRepository {
     required FirebaseFirestore firestore,
   }) : _firestore = firestore;
 
-  CollectionReference get _post =>
+  CollectionReference get _posts =>
       _firestore.collection(FirebaseConstants.postsCollection);
 
   FutureVoid addPost(Post post) async {
     try {
-      return right(_post.doc(post.id).set(post.toMap()));
+      return right(_posts.doc(post.id).set(post.toMap()));
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+  Stream<List<Post>> fetchUserPosts(List<Community> communities) {
+    return _posts
+        .where(
+          'communityName',
+          whereIn: communities.map((e) {
+            print('*********** ${e.name}');
+            return e.name;
+          }).toList(),
+        )
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .map(
+          (event) => event.docs
+              .map(
+                (e) => Post.fromMap(
+                  e.data() as Map<String, dynamic>,
+                ),
+              )
+              .toList(),
+        );
+  }
+
+  FutureVoid deletePost(Post post) async {
+    try {
+      return right(_posts.doc(post.id).delete());
     } on FirebaseException catch (e) {
       throw e.message!;
     } catch (e) {

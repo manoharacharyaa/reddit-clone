@@ -7,14 +7,14 @@ class Post {
   final String? description;
   final String communityName;
   final String communityProfilePic;
-  final List<String> upvotes;
-  final List<String> downvotes;
+  final List<dynamic> upvotes;
+  final List<dynamic> downvotes;
   final int commentCount;
   final String username;
   final String uid;
   final String type;
-  final DateTime ctreatedAt;
-  final List<String> awards;
+  final DateTime createdAt;
+  final List<dynamic> awards;
   Post({
     required this.id,
     required this.title,
@@ -28,7 +28,7 @@ class Post {
     required this.username,
     required this.uid,
     required this.type,
-    required this.ctreatedAt,
+    required this.createdAt,
     required this.awards,
   });
 
@@ -39,14 +39,14 @@ class Post {
     String? description,
     String? communityName,
     String? communityProfilePic,
-    List<String>? upvotes,
-    List<String>? downvotes,
+    List<dynamic>? upvotes,
+    List<dynamic>? downvotes,
     int? commentCount,
     String? username,
     String? uid,
     String? type,
-    DateTime? ctreatedAt,
-    List<String>? awards,
+    DateTime? createdAt,
+    List<dynamic>? awards,
   }) {
     return Post(
       id: id ?? this.id,
@@ -61,7 +61,7 @@ class Post {
       username: username ?? this.username,
       uid: uid ?? this.uid,
       type: type ?? this.type,
-      ctreatedAt: ctreatedAt ?? this.ctreatedAt,
+      createdAt: createdAt ?? this.createdAt,
       awards: awards ?? this.awards,
     );
   }
@@ -80,7 +80,7 @@ class Post {
       'username': username,
       'uid': uid,
       'type': type,
-      'ctreatedAt': ctreatedAt.millisecondsSinceEpoch,
+      'createdAt': createdAt.millisecondsSinceEpoch,
       'awards': awards,
     };
   }
@@ -95,22 +95,22 @@ class Post {
           : null,
       communityName: map['communityName'] as String,
       communityProfilePic: map['communityProfilePic'] as String,
-      upvotes: List<String>.from((map['upvotes'] as List<String>)),
-      downvotes: List<String>.from((map['downvotes'] as List<String>)),
+      upvotes: List<dynamic>.from((map['upvotes'] as List<dynamic>)),
+      downvotes: List<dynamic>.from((map['downvotes'] as List<dynamic>)),
       commentCount: map['commentCount'] as int,
       username: map['username'] as String,
       uid: map['uid'] as String,
       type: map['type'] as String,
-      ctreatedAt: DateTime.fromMillisecondsSinceEpoch(map['ctreatedAt'] as int),
-      awards: List<String>.from(
-        (map['awards'] as List<String>),
+      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
+      awards: List<dynamic>.from(
+        (map['awards'] as List<dynamic>),
       ),
     );
   }
 
   @override
   String toString() {
-    return 'Post(id: $id, title: $title, link: $link, description: $description, communityName: $communityName, communityProfilePic: $communityProfilePic, upvotes: $upvotes, downvotes: $downvotes, commentCount: $commentCount, username: $username, uid: $uid, type: $type, ctreatedAt: $ctreatedAt, awards: $awards)';
+    return 'Post(id: $id, title: $title, link: $link, description: $description, communityName: $communityName, communityProfilePic: $communityProfilePic, upvotes: $upvotes, downvotes: $downvotes, commentCount: $commentCount, username: $username, uid: $uid, type: $type, createdAt: $createdAt, awards: $awards)';
   }
 
   @override
@@ -129,7 +129,7 @@ class Post {
         other.username == username &&
         other.uid == uid &&
         other.type == type &&
-        other.ctreatedAt == ctreatedAt &&
+        other.createdAt == createdAt &&
         listEquals(other.awards, awards);
   }
 
@@ -147,7 +147,7 @@ class Post {
         username.hashCode ^
         uid.hashCode ^
         type.hashCode ^
-        ctreatedAt.hashCode ^
+        createdAt.hashCode ^
         awards.hashCode;
   }
 }

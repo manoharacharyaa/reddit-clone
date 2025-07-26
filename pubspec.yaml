@@ -23,6 +23,7 @@ dependencies:
   shared_preferences: ^2.5.3
   google_fonts: ^6.2.1
   uuid: ^4.5.1
+  any_link_preview: ^3.0.3
 
 dev_dependencies:
   flutter_test:
@@ -35,3 +36,8 @@ flutter:
 
   assets:
     - assets/images/
+
+  fonts:
+    - family: MyFlutterApp
+      fonts:
+        - asset: assets/fonts/MyFlutterApp.ttf
