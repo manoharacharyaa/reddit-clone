@@ -52,8 +52,8 @@ class _MyAppState extends ConsumerState<MyApp> {
                 if (data != null) {
                   getData(ref, data);
                   if (userModel != null) {
-                    print('----------------${data.uid}');
-                    print('-----------User Model Is Not Null');
+                    // print('----------------${data.uid}');
+                    // print('-----------User Model Is Not Null');
                     return logedInRoute;
                   }
                 }
