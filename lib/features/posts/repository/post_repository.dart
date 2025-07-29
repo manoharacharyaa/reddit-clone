@@ -44,7 +44,6 @@ class PostRepository {
         .where(
           'communityName',
           whereIn: communities.map((e) {
-            print('*********** ${e.name}');
             return e.name;
           }).toList(),
         )
@@ -57,6 +56,18 @@ class PostRepository {
                   e.data() as Map<String, dynamic>,
                 ),
               )
+              .toList(),
+        );
+  }
+
+  Stream<List<Post>> fetchGuestPosts() {
+    return _posts
+        .orderBy('createdAt', descending: true)
+        .limit(10)
+        .snapshots()
+        .map(
+          (posts) => posts.docs
+              .map((post) => Post.fromMap(post.data() as Map<String, dynamic>))
               .toList(),
         );
   }

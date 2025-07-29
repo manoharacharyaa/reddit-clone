@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_flutter/core/common/error_text.dart';
 import 'package:reddit_flutter/core/common/loader.dart';
 import 'package:reddit_flutter/core/common/post_card.dart';
+import 'package:reddit_flutter/features/auth/controller/auth_controller.dart';
 import 'package:reddit_flutter/features/posts/controller/post_controller.dart';
 import 'package:reddit_flutter/features/posts/widgets/comment_card.dart';
 import 'package:reddit_flutter/models/post_model.dart';
@@ -43,6 +44,8 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ref.watch(userProvider)!;
+    final isGuest = !user.isAuthenticated;
     return Scaffold(
       appBar: AppBar(),
       body: ref
@@ -52,15 +55,16 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
               return Column(
                 children: [
                   PostCard(post: data),
-                  TextField(
-                    onSubmitted: (value) => addComment(data),
-                    controller: commentController,
-                    decoration: const InputDecoration(
-                      filled: true,
-                      hintText: 'What are your thoughts?',
-                      border: InputBorder.none,
+                  if (!isGuest)
+                    TextField(
+                      onSubmitted: (value) => addComment(data),
+                      controller: commentController,
+                      decoration: const InputDecoration(
+                        filled: true,
+                        hintText: 'What are your thoughts?',
+                        border: InputBorder.none,
+                      ),
                     ),
-                  ),
                   ref
                       .watch(getPostCommentsProvider(widget.postId))
                       .when(

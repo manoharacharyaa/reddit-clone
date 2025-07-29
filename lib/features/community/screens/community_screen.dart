@@ -26,6 +26,7 @@ class CommunityScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
+    final isGuest = !user.isAuthenticated;
     return Scaffold(
       body: ref
           .watch(getCommunityByNameProvider(name))
@@ -69,63 +70,70 @@ class CommunityScreen extends ConsumerWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const Spacer(),
-                            community.mods.contains(user.uid)
-                                ? OutlinedButton(
-                                    onPressed: () {
-                                      navigateToModTools(context);
-                                    },
-                                    style: ButtonStyle(
-                                      side: WidgetStatePropertyAll(
-                                        BorderSide(color: Colors.blueAccent),
-                                      ),
-                                      shape: WidgetStatePropertyAll(
-                                        RoundedSuperellipseBorder(
-                                          borderRadius:
-                                              BorderRadiusGeometry.circular(20),
+                            if (!isGuest)
+                              community.mods.contains(user.uid)
+                                  ? OutlinedButton(
+                                      onPressed: () {
+                                        navigateToModTools(context);
+                                      },
+                                      style: ButtonStyle(
+                                        side: WidgetStatePropertyAll(
+                                          BorderSide(color: Colors.blueAccent),
+                                        ),
+                                        shape: WidgetStatePropertyAll(
+                                          RoundedSuperellipseBorder(
+                                            borderRadius:
+                                                BorderRadiusGeometry.circular(
+                                                  20,
+                                                ),
+                                          ),
+                                        ),
+                                        padding: WidgetStatePropertyAll(
+                                          const EdgeInsets.symmetric(
+                                            horizontal: 25,
+                                          ),
                                         ),
                                       ),
-                                      padding: WidgetStatePropertyAll(
-                                        const EdgeInsets.symmetric(
-                                          horizontal: 25,
+                                      child: Text(
+                                        'Mod Tools',
+                                        style: TextStyle(
+                                          color: Colors.blueAccent,
+                                        ),
+                                      ),
+                                    )
+                                  : OutlinedButton(
+                                      onPressed: () => joinCommunity(
+                                        ref,
+                                        community,
+                                        context,
+                                      ),
+                                      style: ButtonStyle(
+                                        side: WidgetStatePropertyAll(
+                                          BorderSide(color: Colors.blueAccent),
+                                        ),
+                                        shape: WidgetStatePropertyAll(
+                                          RoundedSuperellipseBorder(
+                                            borderRadius:
+                                                BorderRadiusGeometry.circular(
+                                                  20,
+                                                ),
+                                          ),
+                                        ),
+                                        padding: WidgetStatePropertyAll(
+                                          const EdgeInsets.symmetric(
+                                            horizontal: 25,
+                                          ),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        community.members.contains(user.uid)
+                                            ? 'Joined'
+                                            : 'Join',
+                                        style: TextStyle(
+                                          color: Colors.blueAccent,
                                         ),
                                       ),
                                     ),
-                                    child: Text(
-                                      'Mod Tools',
-                                      style: TextStyle(
-                                        color: Colors.blueAccent,
-                                      ),
-                                    ),
-                                  )
-                                : OutlinedButton(
-                                    onPressed: () =>
-                                        joinCommunity(ref, community, context),
-                                    style: ButtonStyle(
-                                      side: WidgetStatePropertyAll(
-                                        BorderSide(color: Colors.blueAccent),
-                                      ),
-                                      shape: WidgetStatePropertyAll(
-                                        RoundedSuperellipseBorder(
-                                          borderRadius:
-                                              BorderRadiusGeometry.circular(20),
-                                        ),
-                                      ),
-                                      padding: WidgetStatePropertyAll(
-                                        const EdgeInsets.symmetric(
-                                          horizontal: 25,
-                                        ),
-                                      ),
-                                    ),
-                                    child: Text(
-                                      community.members.contains(user.uid)
-                                          ? 'Joined'
-                                          : 'Join',
-                                      style: TextStyle(
-                                        color: Colors.blueAccent,
-                                      ),
-                                    ),
-                                  ),
                           ],
                         ),
                         Padding(

@@ -35,11 +35,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(userProvider)!;
+    final isGuest = !user.isAuthenticated;
     final currentTheme = ref.watch(themeNotifierProvider);
 
     return Scaffold(
       drawer: CommunityListDrawer(),
-      endDrawer: const ProfileDrawer(),
+      endDrawer: isGuest ? null : const ProfileDrawer(),
       appBar: AppBar(
         leading: Builder(
           builder: (context) {
@@ -73,22 +74,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ],
       ),
       body: Constants.tabWidget[_page],
-      bottomNavigationBar: CupertinoTabBar(
-        activeColor: currentTheme.iconTheme.color,
-        backgroundColor: Colors.black,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: '',
-          ),
-        ],
-        onTap: onPageChanges,
-        currentIndex: _page,
-      ),
+      bottomNavigationBar: isGuest
+          ? null
+          : CupertinoTabBar(
+              activeColor: currentTheme.iconTheme.color,
+              backgroundColor: Colors.black,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.add),
+                  label: '',
+                ),
+              ],
+              onTap: onPageChanges,
+              currentIndex: _page,
+            ),
     );
   }
 }
